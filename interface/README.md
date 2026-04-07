@@ -1,16 +1,71 @@
-# React + Vite
+# Supervisório Lab 2 - Sistema de Monitoramento Integrado 🏭
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+O **Supervisório Lab 2** é um dashboard de monitoramento de máquinas industriais desenvolvido como projeto prático para o curso de Front-end no **SENAI**. A aplicação consome dados em tempo real via **Node-RED** para visualizar o status de operação, produtividade e alertas de dispositivos do laboratório.
 
-Currently, two official plugins are available:
+## 🚀 Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* **Dashboard em Tempo Real:** Visualização de métricas críticas (status de máquina, produção e monitoramento de destino).
+* **Interface Responsiva:** Design otimizado para diferentes tamanhos de tela utilizando Tailwind CSS.
+* **Integração de Dados:** Consumo de fluxos de dados provenientes do Node-RED.
+* **Componentização:** UI construída com React para garantir reutilização e performance.
 
-## React Compiler
+## 🛠️ Tecnologias Utilizadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Framework:** [Next.js](https://nextjs.org/) (React)
+* **Estilização:** [Tailwind CSS](https://tailwindcss.com/)
+* **Ícones:** [Lucide React](https://lucide.dev/)
+* **Backend/Automação:** [Node-RED](https://nodered.org/)
+* **Deploy/Versionamento:** Git & GitHub
 
-## Expanding the ESLint configuration
+## 📋 Pré-requisitos
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Antes de começar, você precisará ter instalado em sua máquina:
+* [Node.js](https://nodejs.org/en/) (v18 ou superior)
+* [Git](https://git-scm.com/)
+* Instância do **Node-RED** configurada para o envio dos dados.
+
+## 🔧 Instalação e Execução
+
+1.  **Clone o repositório:**
+    ```bash
+    git clone https://github.com/BiancaAntunes-dev/supervisorio-lab-2.git
+    ```
+
+2.  **Entre no diretório:**
+    ```bash
+    cd supervisorio-lab-2
+    ```
+
+3.  **Instale as dependências:**
+    ```bash
+    npm install
+    # ou
+    yarn install
+    ```
+
+4.  **Inicie o servidor de desenvolvimento:**
+    ```bash
+    npm run dev
+    # ou
+    yarn dev
+    ```
+
+5.  Acesse `http://localhost:5173/` no seu navegador.
+
+## 🏗️ Estrutura do Projeto
+
+* `/components`: Componentes reutilizáveis da interface (Cards, Gráficos, Sidebar).
+* `/pages` ou `/app`: Roteamento e páginas principais.
+* `/public`: Ativos estáticos como imagens e ícones.
+* `/styles`: Configurações globais do Tailwind.
+
+---
+
+## 👩‍💻 Autora
+
+Desenvolvido por **Bianca Antunes**.
+* Estudante de Front-end no SENAI.
+* Graduada em Biomedicina, transicionando para a área de tecnologia com foco em interfaces webs e UX.
+
+---
+*Projeto desenvolvido para fins educacionais.*

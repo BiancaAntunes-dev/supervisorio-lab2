@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 export default function Alertas() {
-  // 1. DADOS INICIAIS (Os mesmos da sua imagem, mas agora com objetos de Data reais)
   const [alertas, setAlertas] = useState([
     {
       id: 1,
       tipo: 'CRITICO',
       titulo: 'Robô Principal',
       descricao: 'Parada de emergência acionada na linha principal.',
-      // Simulando que ocorreu há 10 segundos atrás
       data: new Date(Date.now() - 10000), 
       lido: false
     },
@@ -17,7 +15,6 @@ export default function Alertas() {
       tipo: 'AVISO',
       titulo: 'Rampa 3',
       descricao: 'Capacidade de armazenamento próxima ao limite (90%).',
-      // Simulando que ocorreu há 5 minutos atrás
       data: new Date(Date.now() - 5 * 60000), 
       lido: false
     },
@@ -26,7 +23,6 @@ export default function Alertas() {
       tipo: 'INFO',
       titulo: 'Sistema',
       descricao: 'Atualização de rotina concluída com sucesso.',
-      // Simulando que ocorreu há 1 hora atrás
       data: new Date(Date.now() - 60 * 60000), 
       lido: false
     },
@@ -35,15 +31,14 @@ export default function Alertas() {
       tipo: 'AVISO',
       titulo: 'Câmera',
       descricao: 'Queda na taxa de quadros (FPS) detectada.',
-      // Simulando que ocorreu há 2 horas atrás
       data: new Date(Date.now() - 120 * 60000), 
       lido: false
     }
   ]);
 
-  // 2. O GERADOR FANTASMA
+  // Dados fictícios
   useEffect(() => {
-    // Um banco de dados de possíveis alertas falsos para o sistema ir sorteando
+    // alertas falsos para o sistema ir sorteando
     const possiveisAlertas = [
       { tipo: 'INFO', titulo: 'Conexão', descricao: 'Estabilidade da rede restaurada com sucesso.' },
       { tipo: 'AVISO', titulo: 'Sensor de Cor', descricao: 'Leitura com baixa confiança (Rampa 1). Necessário limpeza.' },
@@ -53,37 +48,33 @@ export default function Alertas() {
     ];
 
     const simulador = setInterval(() => {
-      // Sorteia um alerta aleatório da lista acima
       const alertaSorteado = possiveisAlertas[Math.floor(Math.random() * possiveisAlertas.length)];
       
       const novoAlerta = {
-        id: Date.now(), // ID único baseado no tempo
+        id: Date.now(), 
         tipo: alertaSorteado.tipo,
         titulo: alertaSorteado.titulo,
         descricao: alertaSorteado.descricao,
-        data: new Date(), // O momento exato que foi gerado
+        data: new Date(), 
         lido: false
       };
 
-      // Adiciona o novo alerta no TOPO da lista e mantém apenas os últimos 10
       setAlertas(estadoAtual => [novoAlerta, ...estadoAtual].slice(0, 10));
 
-    }, 15000); // <-- ⏱️ TEMPO DO SIMULADOR (15000 = 15 segundos). 
-               // Para 5 minutos, mude para: 5 * 60000
-               // Para 1 hora, mude para: 60 * 60000
+    }, 15000); 
+               
+               
 
     return () => clearInterval(simulador);
   }, []);
 
-  // 3. ATUALIZADOR DO RELÓGIO (Para o texto "Há 5 min" não ficar congelado)
+ 
   const [, setTick] = useState(0);
   useEffect(() => {
-    // Força a tela a atualizar a cada 1 minuto só para recalcular o tempo escrito
     const relogio = setInterval(() => setTick(t => t + 1), 60000);
     return () => clearInterval(relogio);
   }, []);
 
-  // 4. FUNÇÃO PARA TRANSFORMAR A DATA EM TEXTO RELATIVO ("Agora mesmo", etc)
   const calcularTempoAtras = (dataDoAlerta) => {
     const segundosAtras = Math.floor((new Date() - dataDoAlerta) / 1000);
     
@@ -98,13 +89,11 @@ export default function Alertas() {
     const diasAtras = Math.floor(horasAtras / 24);
     return `Há ${diasAtras} dia${diasAtras > 1 ? 's' : ''}`;
   };
-
-  // Função do botão superior
+//Botão superior
   const marcarTodosComoLidos = () => {
     setAlertas(alertasAtual => alertasAtual.map(a => ({ ...a, lido: true })));
   };
 
-  // 5. RENDERIZAÇÃO DA INTERFACE
   return (
     <div className="space-y-6">
       {/* Cabeçalho da Página */}
@@ -134,7 +123,7 @@ export default function Alertas() {
               key={alerta.id} 
               className={`p-4 flex gap-4 transition-all duration-500 ${alerta.lido ? 'opacity-50 bg-slate-50' : 'bg-white'}`}
             >
-              {/* Ícones Condicionais */}
+              {/* Ícones */}
               <div className="mt-1 flex-shrink-0">
                 {alerta.tipo === 'CRITICO' && (
                   <svg className="w-6 h-6 text-red-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path strokeLinecap="round" strokeLinejoin="round" d="m15 9-6 6m0-6 6 6"/></svg>
@@ -153,7 +142,6 @@ export default function Alertas() {
                   
                   {/* Badge e Título */}
                   <div className="space-y-1">
-                    {/* Badge Condicional */}
                     <span className={`inline-block px-2 py-0.5 rounded text-xs font-bold tracking-wider ${
                       alerta.tipo === 'CRITICO' ? 'bg-red-100 text-red-700' : 
                       alerta.tipo === 'AVISO' ? 'bg-yellow-100 text-yellow-700' : 
@@ -164,7 +152,6 @@ export default function Alertas() {
                     <h4 className="font-bold text-slate-800">{alerta.titulo}</h4>
                   </div>
                   
-                  {/* Tempo (ex: Há 5 min) */}
                   <span className="text-xs text-slate-400 font-medium whitespace-nowrap">
                     {calcularTempoAtras(alerta.data)}
                   </span>

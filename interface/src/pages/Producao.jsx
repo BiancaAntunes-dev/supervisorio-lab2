@@ -7,7 +7,7 @@ export default function Producao() {
     { id: 3, name: "PGM Rampa 3", vermelha: 88, preta: 45, cinza: 22 },
   ]);
 
-  // 2. Simulador
+  // Simulador
   useEffect(() => {
     const simulador = setInterval(() => {
       

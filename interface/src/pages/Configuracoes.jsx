@@ -9,7 +9,7 @@ export default function Configuracoes() {
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
           <div className="p-6 space-y-8">
             
-            {/* Secção 1: Rede */}
+            {/* Rede */}
             <section>
               <h3 className="text-lg font-bold text-gray-800 border-b pb-2 mb-4">Configurações de Rede</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -32,7 +32,7 @@ export default function Configuracoes() {
               </div>
             </section>
   
-            {/* Secção 2: Exibição */}
+            {/* Exibição */}
             <section>
               <h3 className="text-lg font-bold text-gray-800 border-b pb-2 mb-4">Preferências de Exibição</h3>
               <div className="space-y-4">

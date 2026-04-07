@@ -79,7 +79,7 @@ export default function PainelGeral() {
               </button>
             </div>
             
-            {/* Botão Home (Circular) */}
+            {/* Botão Home*/}
             <div className="flex justify-center items-center">
               <button className={`transition-all duration-500 rounded-full aspect-square w-28 flex flex-col items-center justify-center shadow-md border-2 border-gray-300
                 ${activeButtonIndex === 2 

@@ -59,7 +59,7 @@ import {
           </ul>
         </nav>
         
-        {/* Rodapé da Sidebar (Botão Sair) */}
+        {/* Rodapé da Sidebar */}
         <div className="p-4 border-t border-slate-700">
           <button className="flex items-center gap-2 text-slate-400 hover:text-red-400 text-sm transition-colors w-full">
             <LogOut className="w-4 h-4" />
