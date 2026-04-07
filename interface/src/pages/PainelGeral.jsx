@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Activity, Moon, Home, AlertTriangle } from 'lucide-react'; 
+import { Activity, Moon, Home, AlertTriangle, Power } from 'lucide-react'; 
 
 export default function PainelGeral() {
   const [activeButtonIndex, setActiveButtonIndex] = useState(0);
@@ -134,13 +134,13 @@ export default function PainelGeral() {
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col">
           <div className="p-4 border-b border-gray-100">
             <div className="flex items-center gap-2 justify-center">
-              <Activity className="text-green-500 w-5 h-5" />
+              <Power className="text-blue-600 w-5 h-5" />
               <h2 className="text-lg font-bold text-gray-800">Controle de Programa</h2>
             </div>
           </div>
           <div className="p-6 flex flex-col items-center justify-center flex-1 bg-gray-50">
-            <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-10 rounded-lg shadow-md border border-green-700 transition-transform active:scale-95 cursor-pointer flex items-center gap-2 text-lg">
-              <Activity className="w-6 h-6" />
+            <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-lg shadow-md border border-blue-700 transition-transform active:scale-95 cursor-pointer flex items-center gap-2 text-lg">
+              <Power className="w-6 h-6" />
               ENABLE PROGRAM
             </button>
             <p className="mt-4 text-sm text-gray-500 text-center max-w-xs font-medium">
