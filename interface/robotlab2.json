@@ -1,0 +1,1192 @@
+[
+    {
+        "id": "a2c0234648f0ead2",
+        "type": "tab",
+        "label": "IntegracaoRoboFANUC",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c93e5192ebd36ec2",
+        "type": "group",
+        "z": "a2c0234648f0ead2",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "5ecf946551123392",
+            "82fc3aaa336541b2",
+            "1b5ae3b299bb8847",
+            "1e7e04e440140cc9",
+            "539e8b3a64bba05a",
+            "b18a18251de429dd",
+            "4748663833e76e23",
+            "94dfaf534331a6a6",
+            "1db80e871b63521a",
+            "eeadbebe7ef968d2",
+            "83455ace2e1eb3b6",
+            "3d41f953ea1acaa0",
+            "b316312b598fbfb0",
+            "869b4313025174a4",
+            "d4cff0440688d504",
+            "ef9e4728543622b1",
+            "f737f7c5422edc83",
+            "f3563c0404a0fccf",
+            "12b14845355183b1",
+            "7f1c8ee0dd59b5f0",
+            "2145b596f8b75828"
+        ],
+        "x": -26,
+        "y": 39,
+        "w": 1232,
+        "h": 362
+    },
+    {
+        "id": "68da8ebe4a40aa73",
+        "type": "group",
+        "z": "a2c0234648f0ead2",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "aeaab34e26f9681f",
+            "2706271e82fc0da3",
+            "f4908952a7ce2346",
+            "a74fe2c2e1e1672e",
+            "3dd330182dfe2f90",
+            "cd3a5b595352be9c",
+            "3fcf788677838f5a",
+            "34078c532c52589c",
+            "620d0eb39c80c84c",
+            "b1c549768752629a",
+            "48273e3c33f08a34",
+            "ff499c87e32a1fb3",
+            "1c1c5dc8635c112d",
+            "97e8c1cea347359c",
+            "de1e48be0d4cf56c",
+            "31a1f333a23aca45",
+            "654971ca20f2ec54",
+            "689667ce3fa8ad74",
+            "61cf901e7d532ae5",
+            "14840a42a5c0d8f0"
+        ],
+        "x": 14,
+        "y": 459,
+        "w": 812,
+        "h": 622
+    },
+    {
+        "id": "5ecf946551123392",
+        "type": "inject",
+        "z": "a2c0234648f0ead2",
+        "g": "c93e5192ebd36ec2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 140,
+        "wires": [
+            [
+                "f737f7c5422edc83"
+            ]
+        ]
+    },
+    {
+        "id": "82fc3aaa336541b2",
+        "type": "change",
+        "z": "a2c0234648f0ead2",
+        "g": "c93e5192ebd36ec2",
+        "name": "Estado I10: Robô em Home",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload[0]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 80,
+        "wires": [
+            [
+                "7f1c8ee0dd59b5f0"
+            ]
+        ]
+    },
+    {
+        "id": "1b5ae3b299bb8847",
+        "type": "change",
+        "z": "a2c0234648f0ead2",
+        "g": "c93e5192ebd36ec2",
+        "name": "Estado I11: Robô em Sleep",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload[1]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 120,
+        "wires": [
+            [
+                "eeadbebe7ef968d2"
+            ]
+        ]
+    },
+    {
+        "id": "1e7e04e440140cc9",
+        "type": "change",
+        "z": "a2c0234648f0ead2",
+        "g": "c93e5192ebd36ec2",
+        "name": "Estado I12: Robô em Movimento",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload[2]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 500,
+        "y": 160,
+        "wires": [
+            [
+                "83455ace2e1eb3b6"
+            ]
+        ]
+    },
+    {
+        "id": "539e8b3a64bba05a",
+        "type": "change",
+        "z": "a2c0234648f0ead2",
+        "g": "c93e5192ebd36ec2",
+        "name": "Estado I14: Rampa2 em execução",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload[4]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 500,
+        "y": 240,
+        "wires": [
+            [
+                "b316312b598fbfb0"
+            ]
+        ]
+    },
+    {
+        "id": "b18a18251de429dd",
+        "type": "change",
+        "z": "a2c0234648f0ead2",
+        "g": "c93e5192ebd36ec2",
+        "name": "Estado I15: Rampa3 em execução",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload[5]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 500,
+        "y": 280,
+        "wires": [
+            [
+                "869b4313025174a4"
+            ]
+        ]
+    },
+    {
+        "id": "4748663833e76e23",
+        "type": "change",
+        "z": "a2c0234648f0ead2",
+        "g": "c93e5192ebd36ec2",
+        "name": "Estado I16: vazio",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload[6]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 320,
+        "wires": [
+            [
+                "d4cff0440688d504"
+            ]
+        ]
+    },
+    {
+        "id": "94dfaf534331a6a6",
+        "type": "change",
+        "z": "a2c0234648f0ead2",
+        "g": "c93e5192ebd36ec2",
+        "name": "Estado I17: vazio",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload[7]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 360,
+        "wires": [
+            [
+                "ef9e4728543622b1"
+            ]
+        ]
+    },
+    {
+        "id": "1db80e871b63521a",
+        "type": "debug",
+        "z": "a2c0234648f0ead2",
+        "g": "c93e5192ebd36ec2",
+        "name": "Estado Lógico das DI's - Byte 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1030,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "eeadbebe7ef968d2",
+        "type": "function",
+        "z": "a2c0234648f0ead2",
+        "g": "c93e5192ebd36ec2",
+        "name": "Estado I11: Texto ",
+        "func": "var estadologico;\n\nif (msg.payload == true) {\n    estadologico = \"Posição do Robô: Sleep\"\n}\nmsg.payload = estadologico\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 120,
+        "wires": [
+            [
+                "1db80e871b63521a"
+            ]
+        ]
+    },
+    {
+        "id": "83455ace2e1eb3b6",
+        "type": "function",
+        "z": "a2c0234648f0ead2",
+        "g": "c93e5192ebd36ec2",
+        "name": "Estado I12: Texto ",
+        "func": "var estadologico;\n\nif (msg.payload == true) {\n    estadologico = \"Posição do Robô: Em movimento\"\n}\nmsg.payload = estadologico\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 160,
+        "wires": [
+            [
+                "1db80e871b63521a"
+            ]
+        ]
+    },
+    {
+        "id": "3d41f953ea1acaa0",
+        "type": "function",
+        "z": "a2c0234648f0ead2",
+        "g": "c93e5192ebd36ec2",
+        "name": "Estado I13: Texto ",
+        "func": "var estadologico;\n\nif (msg.payload == true) {\n    estadologico = \"Programa em Execução: Rampa 1\"\n}\nmsg.payload = estadologico\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 200,
+        "wires": [
+            [
+                "1db80e871b63521a"
+            ]
+        ]
+    },
+    {
+        "id": "b316312b598fbfb0",
+        "type": "function",
+        "z": "a2c0234648f0ead2",
+        "g": "c93e5192ebd36ec2",
+        "name": "Estado I14: Texto ",
+        "func": "var estadologico;\n\nif (msg.payload == true) {\n    estadologico = \"Programa em Execução: Rampa 2\"\n}\nmsg.payload = estadologico\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 240,
+        "wires": [
+            [
+                "1db80e871b63521a"
+            ]
+        ]
+    },
+    {
+        "id": "869b4313025174a4",
+        "type": "function",
+        "z": "a2c0234648f0ead2",
+        "g": "c93e5192ebd36ec2",
+        "name": "Estado I15: Texto ",
+        "func": "var estadologico;\n\nif (msg.payload == true) {\n    estadologico = \"Programa em Execução: Rampa 3\"\n}\nmsg.payload = estadologico\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 280,
+        "wires": [
+            [
+                "1db80e871b63521a"
+            ]
+        ]
+    },
+    {
+        "id": "d4cff0440688d504",
+        "type": "function",
+        "z": "a2c0234648f0ead2",
+        "g": "c93e5192ebd36ec2",
+        "name": "Estado I16: Texto ",
+        "func": "var estadologico;\n\nif (msg.payload==true) \n{\n    estadologico = \"Ligado\" \n} else\n{\n    estadologico = \"Desligado\"\n}\n\nmsg.payload= estadologico\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 320,
+        "wires": [
+            [
+                "1db80e871b63521a"
+            ]
+        ]
+    },
+    {
+        "id": "ef9e4728543622b1",
+        "type": "function",
+        "z": "a2c0234648f0ead2",
+        "g": "c93e5192ebd36ec2",
+        "name": "Estado I17: Texto ",
+        "func": "var estadologico;\n\nif (msg.payload==true) \n{\n    estadologico = \"Ligado\" \n} else\n{\n    estadologico = \"Desligado\"\n}\n\nmsg.payload= estadologico\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 360,
+        "wires": [
+            [
+                "1db80e871b63521a"
+            ]
+        ]
+    },
+    {
+        "id": "2706271e82fc0da3",
+        "type": "inject",
+        "z": "a2c0234648f0ead2",
+        "g": "68da8ebe4a40aa73",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 110,
+        "y": 600,
+        "wires": [
+            [
+                "aeaab34e26f9681f"
+            ]
+        ]
+    },
+    {
+        "id": "f4908952a7ce2346",
+        "type": "inject",
+        "z": "a2c0234648f0ead2",
+        "g": "68da8ebe4a40aa73",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 110,
+        "y": 640,
+        "wires": [
+            [
+                "aeaab34e26f9681f"
+            ]
+        ]
+    },
+    {
+        "id": "a74fe2c2e1e1672e",
+        "type": "debug",
+        "z": "a2c0234648f0ead2",
+        "g": "68da8ebe4a40aa73",
+        "name": "Escreve MODBUS",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "cd3a5b595352be9c",
+        "type": "inject",
+        "z": "a2c0234648f0ead2",
+        "g": "68da8ebe4a40aa73",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 110,
+        "y": 700,
+        "wires": [
+            [
+                "3dd330182dfe2f90"
+            ]
+        ]
+    },
+    {
+        "id": "3fcf788677838f5a",
+        "type": "inject",
+        "z": "a2c0234648f0ead2",
+        "g": "68da8ebe4a40aa73",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 110,
+        "y": 740,
+        "wires": [
+            [
+                "3dd330182dfe2f90"
+            ]
+        ]
+    },
+    {
+        "id": "620d0eb39c80c84c",
+        "type": "inject",
+        "z": "a2c0234648f0ead2",
+        "g": "68da8ebe4a40aa73",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 110,
+        "y": 500,
+        "wires": [
+            [
+                "34078c532c52589c"
+            ]
+        ]
+    },
+    {
+        "id": "b1c549768752629a",
+        "type": "inject",
+        "z": "a2c0234648f0ead2",
+        "g": "68da8ebe4a40aa73",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 110,
+        "y": 540,
+        "wires": [
+            [
+                "34078c532c52589c"
+            ]
+        ]
+    },
+    {
+        "id": "ff499c87e32a1fb3",
+        "type": "inject",
+        "z": "a2c0234648f0ead2",
+        "g": "68da8ebe4a40aa73",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 110,
+        "y": 800,
+        "wires": [
+            [
+                "48273e3c33f08a34"
+            ]
+        ]
+    },
+    {
+        "id": "1c1c5dc8635c112d",
+        "type": "inject",
+        "z": "a2c0234648f0ead2",
+        "g": "68da8ebe4a40aa73",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 110,
+        "y": 840,
+        "wires": [
+            [
+                "48273e3c33f08a34"
+            ]
+        ]
+    },
+    {
+        "id": "de1e48be0d4cf56c",
+        "type": "inject",
+        "z": "a2c0234648f0ead2",
+        "g": "68da8ebe4a40aa73",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 110,
+        "y": 900,
+        "wires": [
+            [
+                "97e8c1cea347359c"
+            ]
+        ]
+    },
+    {
+        "id": "31a1f333a23aca45",
+        "type": "inject",
+        "z": "a2c0234648f0ead2",
+        "g": "68da8ebe4a40aa73",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 110,
+        "y": 940,
+        "wires": [
+            [
+                "97e8c1cea347359c"
+            ]
+        ]
+    },
+    {
+        "id": "689667ce3fa8ad74",
+        "type": "inject",
+        "z": "a2c0234648f0ead2",
+        "g": "68da8ebe4a40aa73",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 110,
+        "y": 1000,
+        "wires": [
+            [
+                "654971ca20f2ec54"
+            ]
+        ]
+    },
+    {
+        "id": "61cf901e7d532ae5",
+        "type": "inject",
+        "z": "a2c0234648f0ead2",
+        "g": "68da8ebe4a40aa73",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 110,
+        "y": 1040,
+        "wires": [
+            [
+                "654971ca20f2ec54"
+            ]
+        ]
+    },
+    {
+        "id": "f3563c0404a0fccf",
+        "type": "comment",
+        "z": "a2c0234648f0ead2",
+        "g": "c93e5192ebd36ec2",
+        "name": "Leitura das Estradas Digitais",
+        "info": "",
+        "x": 160,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "14840a42a5c0d8f0",
+        "type": "comment",
+        "z": "a2c0234648f0ead2",
+        "g": "68da8ebe4a40aa73",
+        "name": "Execução dos Prgramas do Robô",
+        "info": "",
+        "x": 670,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "f737f7c5422edc83",
+        "type": "modbus-getter",
+        "z": "a2c0234648f0ead2",
+        "g": "c93e5192ebd36ec2",
+        "name": "Entradas Digitais",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "unitid": "1",
+        "dataType": "Input",
+        "adr": "0",
+        "quantity": "6",
+        "server": "f7534b9bdfa282b7",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "x": 150,
+        "y": 220,
+        "wires": [
+            [
+                "82fc3aaa336541b2",
+                "1b5ae3b299bb8847",
+                "1e7e04e440140cc9",
+                "539e8b3a64bba05a",
+                "b18a18251de429dd",
+                "4748663833e76e23",
+                "94dfaf534331a6a6",
+                "12b14845355183b1",
+                "2145b596f8b75828"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "aeaab34e26f9681f",
+        "type": "modbus-write",
+        "z": "a2c0234648f0ead2",
+        "g": "68da8ebe4a40aa73",
+        "name": "Executa HOME",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "Coil",
+        "adr": "1",
+        "quantity": "1",
+        "server": "f7534b9bdfa282b7",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 340,
+        "y": 620,
+        "wires": [
+            [
+                "a74fe2c2e1e1672e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3dd330182dfe2f90",
+        "type": "modbus-write",
+        "z": "a2c0234648f0ead2",
+        "g": "68da8ebe4a40aa73",
+        "name": "Executa SLEEP",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "Coil",
+        "adr": "2",
+        "quantity": "1",
+        "server": "f7534b9bdfa282b7",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 340,
+        "y": 720,
+        "wires": [
+            [
+                "a74fe2c2e1e1672e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "34078c532c52589c",
+        "type": "modbus-write",
+        "z": "a2c0234648f0ead2",
+        "g": "68da8ebe4a40aa73",
+        "name": "Habilita Programas",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "Coil",
+        "adr": "0",
+        "quantity": "1",
+        "server": "f7534b9bdfa282b7",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 350,
+        "y": 520,
+        "wires": [
+            [
+                "a74fe2c2e1e1672e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "48273e3c33f08a34",
+        "type": "modbus-write",
+        "z": "a2c0234648f0ead2",
+        "g": "68da8ebe4a40aa73",
+        "name": "Executa PGM Rampa 1",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "Coil",
+        "adr": "3",
+        "quantity": "1",
+        "server": "f7534b9bdfa282b7",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 370,
+        "y": 820,
+        "wires": [
+            [
+                "a74fe2c2e1e1672e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "97e8c1cea347359c",
+        "type": "modbus-write",
+        "z": "a2c0234648f0ead2",
+        "g": "68da8ebe4a40aa73",
+        "name": "Executa PGM Rampa 2",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "Coil",
+        "adr": "4",
+        "quantity": "1",
+        "server": "f7534b9bdfa282b7",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 370,
+        "y": 920,
+        "wires": [
+            [
+                "a74fe2c2e1e1672e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "654971ca20f2ec54",
+        "type": "modbus-write",
+        "z": "a2c0234648f0ead2",
+        "g": "68da8ebe4a40aa73",
+        "name": "Executa PGM Rampa 3",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "Coil",
+        "adr": "5",
+        "quantity": "1",
+        "server": "f7534b9bdfa282b7",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 370,
+        "y": 1020,
+        "wires": [
+            [
+                "a74fe2c2e1e1672e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "12b14845355183b1",
+        "type": "change",
+        "z": "a2c0234648f0ead2",
+        "g": "c93e5192ebd36ec2",
+        "name": "Estado I13: Rampa 1 em execucao",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload[3]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 500,
+        "y": 200,
+        "wires": [
+            [
+                "3d41f953ea1acaa0"
+            ]
+        ]
+    },
+    {
+        "id": "7f1c8ee0dd59b5f0",
+        "type": "function",
+        "z": "a2c0234648f0ead2",
+        "g": "c93e5192ebd36ec2",
+        "name": "Estado I10: Texto ",
+        "func": "var estadologico;\n\nif (msg.payload == true) {\n    estadologico = \"Posição do Robô: Home\"\n}\nmsg.payload = estadologico\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 80,
+        "wires": [
+            [
+                "1db80e871b63521a"
+            ]
+        ]
+    },
+    {
+        "id": "2145b596f8b75828",
+        "type": "http request",
+        "z": "a2c0234648f0ead2",
+        "g": "c93e5192ebd36ec2",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://host.docker.internal:3001/update-robot",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 200,
+        "y": 300,
+        "wires": [
+            [
+                "1db80e871b63521a"
+            ]
+        ]
+    },
+    {
+        "id": "f7534b9bdfa282b7",
+        "type": "modbus-client",
+        "name": "RoboFANUC",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "10.83.135.105",
+        "tcpPort": 502,
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": 9600,
+        "serialDatabits": 8,
+        "serialStopbits": 1,
+        "serialParity": "none",
+        "serialConnectionDelay": 100,
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": 1,
+        "commandDelay": 1,
+        "clientTimeout": 1000,
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": 2000,
+        "parallelUnitIdsAllowed": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "f85a92df8755807e",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-modbus": "5.45.2"
+        }
+    }
+]

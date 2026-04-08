@@ -24,12 +24,17 @@ export default function App() {
     oee: "85%" 
   });
 
+ function obterHoraAtual() {
+  const agora = new Date();
+
+  return agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+}
   const logsRoboFixo = [
-    { id: 1, evento: 'Ciclo de Seleção: ATIVO', hora: '10:05' },
-    { id: 2, evento: 'Início do Programa: AUTO_CYCLE_V1', hora: '10:00' },
+    { id: 1, evento: 'Ciclo de Seleção: ATIVO', hora: obterHoraAtual() },
+    { id: 2, evento: 'Início do Programa: AUTO_CYCLE_V1', hora: obterHoraAtual() },
   ];
 
-  // --- LIGAÇÃO AO BACKEND (SSE - Server-Sent Events) ---
+  // --- LIGAÇÃO AO BACKEND (server events)---
   useEffect(() => {
     const eventSource = new EventSource('http://localhost:3001/events');
 
@@ -42,7 +47,7 @@ export default function App() {
     eventSource.onmessage = (event) => {
       try {
         const data = JSON.parse(event.data);
-        console.log("=== Dados replicados para a Dashboard ===", data);
+        
         
     
         setNodeRedData(prev => ({
@@ -183,7 +188,7 @@ export default function App() {
 
             <div className="flex-1">
               <h3 className="text-sm font-bold text-slate-700 uppercase tracking-widest mb-6 border-b border-gray-100 pb-2">
-                Logs do Robô (Fixos)
+                Logs do Robô
               </h3>
               <ul className="space-y-3">
                 {logsRoboFixo.map((log) => (
