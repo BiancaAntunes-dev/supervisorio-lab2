@@ -99,7 +99,7 @@ export default function Alertas() {
       {/* Cabeçalho da Página */}
       <div>
         <h2 className="text-2xl font-bold text-slate-800">Alertas e Notificações</h2>
-        <p className="text-slate-500">Central de alarmes, alertas e histórico de notificações.</p>
+        <p className="text-slate-500">Central de alarmes e alertas.</p>
       </div>
 
       {/* Card Principal */}

@@ -1,0 +1,7 @@
+<img 
+  src="/assets/logo-senai.png" // O caminho começa com barra, ignorando a palavra 'public'
+  alt="Logotipo SENAI" 
+  width="250"
+  height="60"
+  className="h-11 w-auto object-contain m-8" 
+/>

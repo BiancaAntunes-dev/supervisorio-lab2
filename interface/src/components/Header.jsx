@@ -38,7 +38,12 @@ export default function Header({ setActiveTab }) {
     return (
       <header className="h-16 bg-[#111827] flex items-center px-6 shadow-md z-10 border-l border-slate-700/50 flex-shrink-0">
         <h2 className="text-2xl font-bold text-white">Sistema de Monitoramento Integrado</h2>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/SENAI_S%C3%A3o_Paulo_logo.png" alt="Logótipo SENAI" className='h-11 w-auto object-contain m-8' />
+        <img 
+          src="/assets/logo-senai.png" alt="Logotipo SENAI"
+          width={"250"}
+          height={"60"}
+          className='h-11 w-auto object-contain m-8'
+       />
         
         <div className="ml-auto flex items-center gap-6">
           {/* Relógio em Tempo Real */}
@@ -48,6 +53,7 @@ export default function Header({ setActiveTab }) {
 
           {/* Sino de Notificações */}
           <button 
+            aria-label="Ver notificações"
             onClick={handleNotificationClick}
             className="text-slate-300 hover:text-white relative transition-colors cursor-pointer"
           >

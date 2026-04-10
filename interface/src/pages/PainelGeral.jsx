@@ -4,13 +4,63 @@ import { Activity, Moon, Home, AlertTriangle, Power } from 'lucide-react';
 export default function PainelGeral() {
   const [activeButtonIndex, setActiveButtonIndex] = useState(0);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveButtonIndex((prevIndex) => (prevIndex + 1) % 4);
-    }, 2000);
+  const [rampas, setRampas] = useState([
+    { id: 1, name: 'PGM Rampa 1', active: false },
+    { id: 2, name: 'PGM Rampa 2', active: false },
+    { id: 3, name: 'PGM Rampa 3', active: false },
+  ]);
 
-    return () => clearInterval(timer);
+useEffect(() => {
+    // 1. Função para testar no Console (mantida para testes manuais)
+    window.setRampaStatus = (id, isActive) => {
+      setRampas((prev) => 
+        prev.map((r) => (r.id === id ? { ...r, active: isActive } : r))
+      );
+    };
+
+    // 2. Conexão real com o Node-RED (usando SSE - Server-Sent Events)
+    // Substitua a URL pelo endpoint correto do seu Node-RED ou API Next.js
+    const eventSource = new EventSource('http://localhost:3001/events');
+
+    eventSource.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      
+      // Verifica se o payload chegou com o array raw_bits
+      if (data && data.raw_bits) {
+        const bits = data.raw_bits;
+
+       
+        if (bits[0]) setActiveButtonIndex(2);
+        else if (bits[1]) setActiveButtonIndex(1);
+        else if (bits[2]) setActiveButtonIndex(0);
+   
+        setRampas([
+          { id: 1, name: 'PGM Rampa 1', active: !!bits[3] },
+          { id: 2, name: 'PGM Rampa 2', active: !!bits[4] },
+          { id: 3, name: 'PGM Rampa 3', active: !!bits[5] },
+        ]);
+      }
+    };
+
+  
+    return () => {
+      eventSource.close();
+      delete window.setRampaStatus;
+    };
   }, []);
+  
+  const getCorRampaAtiva = (id) => {
+    switch (id) {
+      case 1: // Rampa 1: Vermelho suave
+        return 'bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.6)]';
+      case 2: // Rampa 2: Preto com leve sombra para destacar
+        return 'bg-black shadow-[0_0_8px_rgba(0,0,0,0.4)]';
+      case 3: // Rampa 3: Cinza
+        return 'bg-gray-500 shadow-[0_0_10px_rgba(107,114,128,0.6)]';
+      default:
+        return 'bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]';
+    }
+  };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-full mx-auto sm:mx-0">
@@ -38,22 +88,19 @@ export default function PainelGeral() {
           </p>
           
           <div className="space-y-3">
-            {[
-              { id: 1, name: 'PGM Rampa 1', active: true },
-              { id: 2, name: 'PGM Rampa 2', active: true },
-              { id: 3, name: 'PGM Rampa 3', active: true },
-            ].map((rampa) => (
+           {rampas.map((rampa) => (
               <div key={rampa.id} className="bg-gray-200 rounded-md p-3 flex items-center justify-between shadow-inner">
                 <div className="flex items-center gap-3">
-                  <div className={`w-4 h-4 rounded-full ${rampa.active ? 'bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]' : 'bg-gray-400'}`}></div>
+                  {/*mudança de cor da rampa */}
+                  <div className={`w-4 h-4 rounded-full transition-colors duration-300 ${
+                    rampa.active ? getCorRampaAtiva(rampa.id) : 'bg-gray-400'
+                  }`}></div>               
                   <span className="font-extrabold text-gray-800 text-lg">{rampa.name}</span>
                 </div>
               </div>
             ))}
           </div>
         </div>
-
-        
         <div className="p-4 bg-gray-50">
           <h3 className="font-bold text-gray-800 text-center mb-4 text-lg">Painel de Sinalização</h3>
           <div className="grid grid-cols-2 gap-6 max-w-[280px] mx-auto">
@@ -67,7 +114,6 @@ export default function PainelGeral() {
                 <span className={`text-xs ${activeButtonIndex === 0 ? 'text-emerald-600' : 'text-gray-600'}`}>(PGM)</span>
               </button>
             </div>
-            
             {/* Botão Sleep */}
             <div className="flex justify-center items-center">
               <button className={`transition-all duration-500 rounded-full aspect-square w-28 flex flex-col items-center justify-center shadow-md border-2 border-gray-300
@@ -85,6 +131,8 @@ export default function PainelGeral() {
                 ${activeButtonIndex === 2 
                   ? 'bg-emerald-100 text-emerald-800 shadow-[0_0_15px_rgba(16,185,129,0.5)] border-emerald-100' 
                   : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}>
+                <span className={`absolute -inset-2 bg-emerald-500 rounded-full blur-md -z-10 transition-opacity duration-500$ {activeButtonIndex === 2 ? 'opacity-30' : 'opacity-0'}`}></span>
+                    
                 <span className="font-extrabold mb-1">Home</span>
                 <Home className={`w-6 h-6 ${activeButtonIndex === 2 ? 'text-emerald-800' : 'text-gray-800'}`} />
               </button>

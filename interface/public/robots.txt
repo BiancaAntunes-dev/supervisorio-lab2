@@ -1,0 +1,6 @@
+# Permite que todos os robôs rastreiem o site
+User-agent: *
+Allow: /
+
+# Indica onde está o mapa do site (opcional, se você tiver um)
+# Sitemap: https://seu-dominio.com/sitemap.xml
