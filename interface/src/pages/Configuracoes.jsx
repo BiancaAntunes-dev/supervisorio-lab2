@@ -32,33 +32,6 @@ export default function Configuracoes() {
               </div>
             </section>
   
-            {/* Exibição */}
-            <section>
-              <h3 className="text-lg font-bold text-gray-800 border-b pb-2 mb-4">Preferências de Exibição</h3>
-              <div className="space-y-4">
-                <div className="flex items-center justify-between bg-gray-50 p-3 rounded border border-gray-200">
-                  <div>
-                    <p className="font-bold text-gray-800">Tema Escuro</p>
-                    <p className="text-xs text-gray-500">Mudar a interface principal para cores escuras.</p>
-                  </div>
-                  {/* Switch inativo */}
-                  <div className="w-12 h-6 bg-gray-300 rounded-full relative cursor-pointer transition-colors">
-                    <div className="w-5 h-5 bg-white rounded-full absolute top-0.5 left-0.5 shadow transition-transform"></div>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between bg-gray-50 p-3 rounded border border-gray-200">
-                  <div>
-                    <p className="font-bold text-gray-800">Atualização em Tempo Real</p>
-                    <p className="text-xs text-gray-500">Busca novos dados de produção a cada 1 segundo.</p>
-                  </div>
-                  {/* Switch ativo */}
-                  <div className="w-12 h-6 bg-blue-500 rounded-full relative cursor-pointer transition-colors">
-                    <div className="w-5 h-5 bg-white rounded-full absolute top-0.5 right-0.5 shadow transition-transform"></div>
-                  </div>
-                </div>
-              </div>
-            </section>
-  
             {/* Botão de Salvar */}
             <div className="flex justify-end pt-4">
               <button className="bg-slate-800 text-white font-bold py-2 px-6 rounded hover:bg-slate-700 transition-colors">

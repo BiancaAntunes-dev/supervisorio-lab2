@@ -14,7 +14,7 @@ export default function PainelGeral() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-full mx-auto sm:mx-0">
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col">
         {/* Status do Robô */}
         <div className="p-4 border-b border-gray-100">
           <div className="flex items-center gap-2 mb-4 justify-center">
@@ -104,9 +104,9 @@ export default function PainelGeral() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 h-full">
         {/* Card de Emergência */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col flex-1 justify-center">
           <div className="p-4 border-b border-gray-100">
             <div className="flex items-center gap-2 mb-4 justify-center">
               <AlertTriangle className="text-red-500 w-5 h-5" />
@@ -119,8 +119,8 @@ export default function PainelGeral() {
           </div>
 
           <div className="p-6 flex flex-col items-center justify-center flex-1 bg-gray-50">
-            <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-10 rounded-lg shadow-[0_0_20px_rgba(220,38,38,0.5)] border border-red-700 transition-transform active:scale-95 cursor-pointer flex items-center gap-2 text-lg">
-              <AlertTriangle className="w-6 h-6" />
+            <button className="bg-red-600 hover:bg-red-700 text-white text-sm font-bold py-3 px-10 rounded-lg shadow-[0_0_20px_rgba(220,38,38,0.5)] border border-red-700 transition-transform active:scale-95 cursor-pointer flex items-center gap-2 self-center">
+              <AlertTriangle className="w-5 h-5" />
               PARADA DE EMERGÊNCIA
             </button>
             
@@ -131,7 +131,7 @@ export default function PainelGeral() {
         </div>
 
         {/* Card Enable Program */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col flex-1 justify-center">
           <div className="p-4 border-b border-gray-100">
             <div className="flex items-center gap-2 justify-center">
               <Power className="text-blue-600 w-5 h-5" />
