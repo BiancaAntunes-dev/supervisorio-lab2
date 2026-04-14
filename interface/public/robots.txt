@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 # Permite que todos os robôs rastreiem o site
 User-agent: *
 Allow: /
 
 # Indica onde está o mapa do site (opcional, se você tiver um)
 # Sitemap: https://seu-dominio.com/sitemap.xml
+=======
+User-agent: *
+Allow: /
+>>>>>>> 434341da77e18cdf79232214f0a37e9933bbd060
