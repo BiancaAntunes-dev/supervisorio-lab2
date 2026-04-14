@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import PainelGeral from './pages/PainelGeral';
-import Alertas from './pages/Alertas';
 import Configuracoes from './pages/Configuracoes';
-import Monitoramento from './pages/Monitoramento';
-import Producao from './pages/Producao';
 import PerfilCadastro from './pages/PerfilCadastro';
-
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('painel');
@@ -15,9 +11,6 @@ export default function App() {
   const renderContent = () => {
     switch (activeTab) {
       case 'painel': return <PainelGeral />;
-      case 'monitoramento': return <Monitoramento />;
-      case 'producao': return <Producao />;
-      case 'alertas' : return <Alertas />;
       case 'configuracoes' : return <Configuracoes />;
       case 'perfil' : return <PerfilCadastro />;
       default: return <PainelGeral />;
@@ -32,8 +25,10 @@ export default function App() {
       <div className="flex-1 flex flex-col h-full overflow-hidden relative">
         <Header setActiveTab={setActiveTab} />
 
-        <main className="flex-1 overflow-y-auto p-6 md:p-8 bg-[#f3f4f6]">
-          <div className="max-w-6xl mx-auto">
+        <main
+          className={`flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 ${activeTab === 'painel' || activeTab === 'perfil' || activeTab === 'configuracoes' ? 'bg-[#1a1d24]' : 'bg-[#f3f4f6]'}`}
+        >
+          <div className={activeTab === 'painel' || activeTab === 'perfil' || activeTab === 'configuracoes' ? 'max-w-[1920px] mx-auto w-full' : 'max-w-6xl mx-auto'}>
             {renderContent()}
           </div>
         </main>
