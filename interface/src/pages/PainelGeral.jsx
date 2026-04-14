@@ -111,6 +111,7 @@ export default function PainelGeral() {
     disponibilidade_mecanica: '99.2%',
   });
 
+
   const [rampas, setRampas] = useState([
     { id: 1, name: 'PGM Rampa 1', active: false },
     { id: 2, name: 'PGM Rampa 2', active: false },
@@ -175,78 +176,100 @@ useEffect(() => {
 
   useEffect(() => {
     const eventSource = new EventSource('http://localhost:3001/events');
+        eventSource.onopen = () => {
+          setIsConnected(true);
+          console.log("Conectado ao NODE-RED");
+        };
+eventSource.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+        // ... aqui vai a lógica de setNodeRedData que já discutimos ...
+      } catch (err) {
+        console.error("Erro no parse dos dados", err);
+      }
+    };
+
+    eventSource.onerror = () => {
+      setIsConnected(false);
+      eventSource.close();
+    };
+
+    return () => {
+      eventSource.close();
+    };
+  }, []); 
+
         {/* Monitoramento de Destino */}
-        <div className="p-4 border-b border-gray-100">
-          <h3 className="font-bold text-gray-800 text-center mb-1 text-lg">Monitoramento de destino:</h3>
-          <p className="text-xs text-gray-500 text-center mb-4 px-4 leading-tight">
-            Painel luminoso indica qual esteira está ativa no momento.
-          </p>
-          
-          <div className="space-y-3">
-           {rampas.map((rampa) => (
-              <div key={rampa.id} className="bg-gray-200 rounded-md p-3 flex items-center justify-between shadow-inner">
-                <div className="flex items-center gap-3">
-                  {/*mudança de cor da rampa */}
-                  <div className={`w-4 h-4 rounded-full transition-colors duration-300 ${
-                    rampa.active ? getCorRampaAtiva(rampa.id) : 'bg-gray-400'
-                  }`}></div>               
-                  <span className="font-extrabold text-gray-800 text-lg">{rampa.name}</span>
-                </div>
-              </div>
-            ))}
+  <>
+  <div className="p-4 border-b border-gray-100">
+    <h3 className="font-bold text-gray-800 text-center mb-1 text-lg">Monitoramento de destino:</h3>
+    <p className="text-xs text-gray-500 text-center mb-4 px-4 leading-tight">
+      Painel luminoso indica qual esteira está ativa no momento.
+    </p>
+
+    <div className="space-y-3">
+      {rampas.map((rampa) => (
+        <div key={rampa.id} className="bg-gray-200 rounded-md p-3 flex items-center justify-between shadow-inner">
+          <div className="flex items-center gap-3">
+            <div className={`w-4 h-4 rounded-full transition-colors duration-300 ${
+              rampa.active ? getCorRampaAtiva(rampa.id) : 'bg-gray-400'
+            }`}></div>
+            <span className="font-extrabold text-gray-800 text-lg">{rampa.name}</span>
           </div>
         </div>
-        <div className="p-4 bg-gray-50">
-          <h3 className="font-bold text-gray-800 text-center mb-4 text-lg">Painel de Sinalização</h3>
-          <div className="grid grid-cols-2 gap-6 max-w-[280px] mx-auto">
-            {/* Botão Running */}
-            <div className="flex justify-center items-center">
-              <button className={`transition-all duration-500 rounded-full aspect-square w-28 flex flex-col items-center justify-center shadow-md border-2 border-gray-300
-                ${activeButtonIndex === 0 
-                  ? 'bg-emerald-100 text-emerald-800 shadow-[0_0_15px_rgba(16,185,129,0.5)] border-emerald-100' 
-                  : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}>
-                <span className="font-extrabold">Running</span>
-                <span className={`text-xs ${activeButtonIndex === 0 ? 'text-emerald-600' : 'text-gray-600'}`}>(PGM)</span>
-              </button>
-            </div>
-            {/* Botão Sleep */}
-            <div className="flex justify-center items-center">
-              <button className={`transition-all duration-500 rounded-full aspect-square w-28 flex flex-col items-center justify-center shadow-md border-2 border-gray-300
-                ${activeButtonIndex === 1 
-                  ? 'bg-emerald-100 text-emerald-800 shadow-[0_0_15px_rgba(16,185,129,0.5)] border-emerald-100' 
-                  : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}>
-                <span className="font-extrabold">Sleep</span>
-                <Moon className={`w-5 h-5 mt-1 ${activeButtonIndex === 1 ? 'text-emerald-800' : 'text-gray-800'}`} />
-              </button>
-            </div>
-            
-            {/* Botão Home*/}
-            <div className="flex justify-center items-center">
-              <button className={`transition-all duration-500 rounded-full aspect-square w-28 flex flex-col items-center justify-center shadow-md border-2 border-gray-300
-                ${activeButtonIndex === 2 
-                  ? 'bg-emerald-100 text-emerald-800 shadow-[0_0_15px_rgba(16,185,129,0.5)] border-emerald-100' 
-                  : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}>
-                <span className={`absolute -inset-2 bg-emerald-500 rounded-full blur-md -z-10 transition-opacity duration-500$ {activeButtonIndex === 2 ? 'opacity-30' : 'opacity-0'}`}></span>
-                    
-                <span className="font-extrabold mb-1">Home</span>
-                <Home className={`w-6 h-6 ${activeButtonIndex === 2 ? 'text-emerald-800' : 'text-gray-800'}`} />
-              </button>
-            </div>
-            
-            {/* Botão Emergência */}
-            <div className="flex justify-center items-center">
-              <button className={`transition-all duration-500 rounded-full aspect-square w-28 flex flex-col items-center justify-center shadow-md border-2 border-gray-300
-                ${activeButtonIndex === 3 
-                  ? 'bg-red-200 text-red-900 shadow-[0_0_15px_rgba(248,113,113,0.5)] border-red-400' 
-                  : 'bg-gray-200 hover:bg-red-200 hover:border-red-400 text-gray-800'}`}>
-                <span className="font-extrabold">Emergência</span>
-                <AlertTriangle className={`w-6 h-6 mt-1 ${activeButtonIndex === 3 ? 'text-red-900' : 'text-gray-800'}`} />
-              </button>
-            </div>
-          </div>
-        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* Painel de Sinalização */}
+  <div className="p-4 bg-gray-50">
+    <h3 className="font-bold text-gray-800 text-center mb-4 text-lg">Painel de Sinalização</h3>
+    
+    {/* Abertura da Grid */}
+    <div className="grid grid-cols-2 gap-6 max-w-[280px] mx-auto">
+      
+      {/* Botão Running */}
+      <div className="flex justify-center items-center">
+        <button className={`transition-all duration-500 rounded-full aspect-square w-28 flex flex-col items-center justify-center shadow-md border-2 border-gray-300
+          ${activeButtonIndex === 0 ? 'bg-emerald-100 text-emerald-800 shadow-[0_0_15px_rgba(16,185,129,0.5)] border-emerald-100' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}>
+          <span className="font-extrabold">Running</span>
+          <span className={`text-xs ${activeButtonIndex === 0 ? 'text-emerald-600' : 'text-gray-600'}`}>(PGM)</span>
+        </button>
       </div>
-=======
+
+      {/* Botão Sleep */}
+      <div className="flex justify-center items-center">
+        <button className={`transition-all duration-500 rounded-full aspect-square w-28 flex flex-col items-center justify-center shadow-md border-2 border-gray-300
+          ${activeButtonIndex === 1 ? 'bg-emerald-100 text-emerald-800 shadow-[0_0_15px_rgba(16,185,129,0.5)] border-emerald-100' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}>
+          <span className="font-extrabold">Sleep</span>
+          <Moon className={`w-5 h-5 mt-1 ${activeButtonIndex === 1 ? 'text-emerald-800' : 'text-gray-800'}`} />
+        </button>
+      </div>
+
+      {/* Botão Home */}
+      <div className="flex justify-center items-center">
+        <button className={`transition-all duration-500 rounded-full aspect-square w-28 flex flex-col items-center justify-center shadow-md border-2 border-gray-300
+          ${activeButtonIndex === 2 ? 'bg-emerald-100 text-emerald-800 shadow-[0_0_15px_rgba(16,185,129,0.5)] border-emerald-100' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}>
+          {/* Corrigido o $ aqui embaixo */}
+          <span className={`absolute -inset-2 bg-emerald-500 rounded-full blur-md -z-10 transition-opacity duration-500 ${activeButtonIndex === 2 ? 'opacity-30' : 'opacity-0'}`}></span>
+          <span className="font-extrabold mb-1">Home</span>
+          <Home className={`w-6 h-6 ${activeButtonIndex === 2 ? 'text-emerald-800' : 'text-gray-800'}`} />
+        </button>
+      </div>
+
+      {/* Botão Emergência */}
+      <div className="flex justify-center items-center">
+        <button className={`transition-all duration-500 rounded-full aspect-square w-28 flex flex-col items-center justify-center shadow-md border-2 border-gray-300
+          ${activeButtonIndex === 3 ? 'bg-red-200 text-red-900 shadow-[0_0_15px_rgba(248,113,113,0.5)] border-red-400' : 'bg-gray-200 hover:bg-red-200 hover:border-red-400 text-gray-800'}`}>
+          <span className="font-extrabold">Emergência</span>
+          <AlertTriangle className={`w-6 h-6 mt-1 ${activeButtonIndex === 3 ? 'text-red-900' : 'text-gray-800'}`} />
+        </button>
+      </div>
+
+    </div> 
+  </div>
+</>
+
     eventSource.onopen = () => setIsConnected(true);
 
     eventSource.onmessage = (event) => {
@@ -286,7 +309,7 @@ useEffect(() => {
         else if (typeof data.payload === 'string') logTexto = data.payload;
         else if (data.payload && data.payload.ultimo_log) logTexto = data.payload.ultimo_log;
         else if (data.msg) logTexto = data.msg;
->>>>>>> 434341da77e18cdf79232214f0a37e9933bbd060
+
 
         if (logTexto) {
           const timeStr = new Date().toLocaleTimeString('pt-BR', {
@@ -329,7 +352,7 @@ useEffect(() => {
     return () => eventSource.close();
   }, []);
 
-  // --- Auto-desliga o brilho da peça após 2.5 segundos ---
+
   useEffect(() => {
     if (currentPieceColor || activeRampa) {
       const timer = setTimeout(() => {
