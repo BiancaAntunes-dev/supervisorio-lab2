@@ -14,19 +14,19 @@
   0%,
   100% {
     box-shadow:
-      0 0 0 2px rgba(239, 68, 68, 0.45),
-      0 0 26px 12px rgba(244, 67, 54, 1),
-      0 0 52px 20px rgba(220, 38, 38, 0.6);
+      0 0 0 2px rgba(183, 28, 28, 0.45),
+      0 0 18px 8px rgba(211, 47, 47, 0.42),
+      0 0 36px 14px rgba(198, 40, 40, 0.28);
     opacity: 1;
     transform: scale(1);
   }
   50% {
     box-shadow:
-      0 0 0 1px rgba(239, 68, 68, 0.2),
-      0 0 10px 5px rgba(244, 67, 54, 0.45),
-      0 0 24px 12px rgba(220, 38, 38, 0.28);
-    opacity: 0.88;
-    transform: scale(1.1); 
+      0 0 0 1px rgba(183, 28, 28, 0.3),
+      0 0 8px 4px rgba(211, 47, 47, 0.28),
+      0 0 20px 10px rgba(183, 28, 28, 0.2);
+    opacity: 0.9;
+    transform: scale(1.08);
   }
 }
 
@@ -54,27 +54,27 @@
   0%,
   100% {
     box-shadow:
-      0 0 0 2px rgba(255, 255, 255, 0.5),
-      0 0 22px 12px rgba(255, 255, 255, 0.85),
-      0 0 48px 20px rgba(224, 224, 224, 0.55);
+      0 0 0 2px rgba(69, 90, 100, 0.45),
+      0 0 18px 8px rgba(96, 125, 139, 0.38),
+      0 0 36px 14px rgba(69, 90, 100, 0.22);
     opacity: 1;
     transform: scale(1);
   }
   50% {
     box-shadow:
-      0 0 0 1px rgba(255, 255, 255, 0.2),
-      0 0 8px 4px rgba(255, 255, 255, 0.4),
-      0 0 22px 10px rgba(224, 224, 224, 0.28);
-    opacity: 0.88;
-    transform: scale(1.1);
+      0 0 0 1px rgba(69, 90, 100, 0.3),
+      0 0 8px 4px rgba(96, 125, 139, 0.26),
+      0 0 20px 10px rgba(55, 71, 79, 0.18);
+    opacity: 0.9;
+    transform: scale(1.08);
   }
 }
 
 .peca-ativo-vermelho {
   background-color: #e53935 !important;
-  border-color: #ffcdd2 !important;
+  border-color: #b71c1c !important;
   animation: peca-pisca-vermelho 0.8s ease-in-out infinite !important;
-  z-index: 10; 
+  z-index: 10;
 }
 
 .peca-ativo-preto {
@@ -85,8 +85,184 @@
 }
 
 .peca-ativo-cinza {
-  background-color: #eceff1 !important;
-  border-color: #fafafa !important;
+  background-color: #78909c !important;
+  border-color: #455a64 !important;
   animation: peca-pisca-cinza 0.8s ease-in-out infinite !important;
   z-index: 10;
+}
+
+/* Indicadores circulares (monitoramento de peças): rampa em execução via Node-RED — pulso mais forte e rápido */
+.peca-indicador-rampa-exec {
+  filter: brightness(1.18) saturate(1.35) contrast(1.05);
+  animation-duration: 0.55s !important;
+  animation-timing-function: ease-in-out !important;
+}
+
+/* Vermelho: execução da rampa sem exagerar brilho (o filtro global clareia demais) */
+.peca-ativo-vermelho.peca-indicador-rampa-exec {
+  filter: brightness(1.08) saturate(1.18) contrast(1.04);
+}
+
+/* Cinza: execução da rampa com o mesmo equilíbrio do vermelho (sem brilho excessivo) */
+.peca-ativo-cinza.peca-indicador-rampa-exec {
+  filter: brightness(1.08) saturate(1.18) contrast(1.04);
+}
+
+/* Monitoramento de destino: glassmorphism + neon verde (hover / ativo / :active) */
+.destino-rampa-btn {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-radius: 0.875rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.07) 0%,
+    rgba(255, 255, 255, 0.02) 48%,
+    rgba(0, 0, 0, 0.06) 100%
+  );
+  background-color: rgba(24, 30, 38, 0.42);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(0, 0, 0, 0.15),
+    0 4px 20px rgba(0, 0, 0, 0.22);
+  transition:
+    transform 0.2s cubic-bezier(0.33, 1, 0.68, 1),
+    box-shadow 0.28s ease,
+    border-color 0.28s ease,
+    background-color 0.28s ease;
+}
+
+/* Inativo: sem brilho verde — só o estado --ativo acende os pseudo-elementos */
+.destino-rampa-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  background: transparent;
+  transition: opacity 0.28s ease, background 0.28s ease;
+  pointer-events: none;
+}
+
+.destino-rampa-btn::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  box-shadow: none;
+  transition: opacity 0.28s ease, box-shadow 0.28s ease;
+  pointer-events: none;
+}
+
+.destino-rampa-btn--round {
+  width: 5.75rem;
+  height: 5.75rem;
+  min-height: 0;
+  padding: 0.45rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Hover só para controles interativos; indicadores só leitura usam --readonly */
+.destino-rampa-btn:not(.destino-rampa-btn--readonly):hover {
+  border-color: rgba(74, 222, 128, 0.38);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 0 28px rgba(74, 222, 128, 0.1),
+    0 0 0 1px rgba(34, 197, 94, 0.12),
+    0 6px 28px rgba(0, 0, 0, 0.28),
+    0 0 32px rgba(34, 197, 94, 0.22);
+}
+
+.destino-rampa-btn:not(.destino-rampa-btn--readonly):hover::before {
+  opacity: 0.65;
+  background: radial-gradient(
+    ellipse 120% 80% at 50% 100%,
+    rgba(34, 197, 94, 0.22) 0%,
+    transparent 62%
+  );
+}
+
+.destino-rampa-btn:not(.destino-rampa-btn--readonly):hover::after {
+  opacity: 0.72;
+  box-shadow: inset 0 0 36px rgba(74, 222, 128, 0.12);
+}
+
+.destino-rampa-btn--ativo {
+  border-color: rgba(74, 222, 128, 0.52);
+  background-color: rgba(18, 42, 28, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 0 40px rgba(74, 222, 128, 0.14),
+    0 0 0 1px rgba(34, 197, 94, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 44px rgba(34, 197, 94, 0.32);
+}
+
+.destino-rampa-btn--ativo::before {
+  opacity: 0.85;
+  background: radial-gradient(
+    ellipse 130% 90% at 50% 100%,
+    rgba(52, 211, 153, 0.35) 0%,
+    rgba(34, 197, 94, 0.12) 45%,
+    transparent 65%
+  );
+}
+
+.destino-rampa-btn--ativo::after {
+  opacity: 0.95;
+  box-shadow: inset 0 0 48px rgba(74, 222, 128, 0.18);
+}
+
+.destino-rampa-btn--ativo:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 48px rgba(74, 222, 128, 0.18),
+    0 0 0 1px rgba(34, 197, 94, 0.28),
+    0 8px 36px rgba(0, 0, 0, 0.32),
+    0 0 52px rgba(34, 197, 94, 0.4);
+}
+
+.destino-rampa-btn:not(.destino-rampa-btn--readonly):active {
+  transform: translateY(1px) scale(0.992);
+  border-color: rgba(74, 222, 128, 0.55);
+  background-color: rgba(14, 48, 30, 0.72);
+  box-shadow:
+    inset 0 2px 8px rgba(0, 0, 0, 0.35),
+    inset 0 0 52px rgba(74, 222, 128, 0.22),
+    0 0 0 1px rgba(34, 197, 94, 0.35),
+    0 2px 12px rgba(0, 0, 0, 0.35),
+    0 0 56px rgba(34, 197, 94, 0.48);
+}
+
+.destino-rampa-btn:not(.destino-rampa-btn--readonly):active::before {
+  opacity: 1;
+}
+
+.destino-rampa-btn:not(.destino-rampa-btn--readonly):active::after {
+  opacity: 1;
+  box-shadow: inset 0 0 56px rgba(74, 222, 128, 0.26);
+}
+
+/* Indicadores só leitura: sem hover/active; inativo permanece visualmente “apagado” */
+.destino-rampa-btn--readonly.destino-rampa-btn--ativo:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 0 40px rgba(74, 222, 128, 0.14),
+    0 0 0 1px rgba(34, 197, 94, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 44px rgba(34, 197, 94, 0.32);
 }
