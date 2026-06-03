@@ -2,6 +2,9 @@
 
 O **Supervisório Lab 2** é um dashboard de monitoramento de máquinas industriais desenvolvido como projeto prático para o curso de Front-end no **SENAI**. A aplicação consome dados em tempo real via **Node-RED** para visualizar o status de operação, produtividade e alertas de dispositivos do laboratório.
 
+![Screenshot do Dashboard](./Screenshot%202026-06-01%20141046.png)
+
+
 ## 🚀 Funcionalidades
 
 * **Dashboard em Tempo Real:** Visualização de métricas críticas (status de máquina, produção e monitoramento de destino).
